@@ -38,33 +38,41 @@ function createRows(sidePixelCount) {
 
 //PROMPT USER FOR NUMBER OF PIXELS IN THE GRID. FOR NOT WE ARE DOING
 //THIS MANUALLY AND WE WILL ADD FUNCTIONALITY LATER. 
-
-createRows(20);
-//THIS IS THE HOVER FUNCTIONALITY TO COLOR!
-const divSecondLevelClass = document.querySelectorAll(".divSecondLevel");
-let mouseDown = false;
-let mouseOver = false;
-
-divSecondLevelClass.forEach(divElementLogic);
-function divElementLogic(item) {
-    item.onmousedown = () => {
-        mouseDown = true;
-        console.log("mouseDown");
-        item.setAttribute("style",
-            "flex: auto; background-color: black;"
-        );
+const sizeButton = document.querySelector(".sizeButton");
+sizeButton.addEventListener("click", () => {
+    container.innerHTML = "";
+    let userInput = prompt("Input any number between 1 and 100 for the number of pixels in your sketch grid!");
+    if(userInput < 101 && userInput > 0) {
+        createRows(userInput);
+        hoverFunction();
     };
-    item.onmouseup = () => {
-        mouseDown = false;
-        console.log("mouseUp");
-    }
-    item.onmouseover = () => {
-        if(mouseDown == true) {
-            item.setAttribute("style", 
+});
+
+//THIS IS THE HOVER FUNCTIONALITY TO COLOR!
+function hoverFunction() {
+    const divSecondLevelClass = document.querySelectorAll(".divSecondLevel");
+    let mouseDown = false;
+    let mouseOver = false;
+
+    divSecondLevelClass.forEach(divElementLogic);
+    function divElementLogic(item) {
+        item.onmousedown = () => {
+            mouseDown = true;
+            console.log("mouseDown");
+            item.setAttribute("style",
                 "flex: auto; background-color: black;"
             );
         };
+        item.onmouseup = () => {
+            mouseDown = false;
+            console.log("mouseUp");
+        }
+        item.onmouseover = () => {
+            if(mouseDown == true) {
+              item.setAttribute("style", 
+                    "flex: auto; background-color: black;"
+                );
+            };
+        };
     };
 };
-
-

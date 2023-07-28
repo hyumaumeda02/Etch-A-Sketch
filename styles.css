@@ -1,8 +1,5 @@
 .container {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
-}
-.beenHovered {
-    background-color: black;
+    border: 3px solid black;
 }
